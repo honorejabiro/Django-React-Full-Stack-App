@@ -8,9 +8,9 @@ const Notes = ({note, onDelete}) => {
         <p className='note-title'>{note.title}</p>
         <p className='note-content'>{note.body}</p>
         <p className='note-detail'>{formatteDate}</p>
-        <button className='delete-button' onClick={() => {
-            onDelete(note.id)
-        }}> Delete </button>
+        <button className='delete-button' onClick={() => onDelete(note.id)}>
+            Delete
+        </button>
     </div>
   )
 }

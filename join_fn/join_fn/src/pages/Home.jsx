@@ -22,25 +22,20 @@ const Home = () => {
 
   useEffect(() => {
     fetchnotes()
+    console.log(notes)
   }, [])
 
 
   const delete_note = (id) => {
-    api
-      .delete(`/api/note/delete/${id}`)
-      .then((response) => {
-        if (response.status === 204) {
-          alert("Note succefully deleted");
-          fetchnotes();
-        } else {
-          alert("Note not deleted");
-        }
-        console.log(response.message);
-      })
-      .catch((errors) => {
-        console.log(errors.message);
-      });
-  };
+    api.delete(`api/note/delete/${id}/`)
+    .then(response => {
+      alert(response.data.message)
+      fetchnotes()
+    })
+    .catch(error => {
+      alert("note not deleted")
+    })
+  }
 
   const create_note = (e) => {
     e.preventDefault()
@@ -64,9 +59,9 @@ const Home = () => {
         <h1>
           Notes
         </h1>
-        {notes.map(note => (
-          <Notes note={note} onDelete={delete_note} key={note.id} />
-        ))}
+          {notes.map((note) => (
+            <Notes note={note} onDelete={delete_note} key={note.id} />
+          ))}
       </div>
       <form onSubmit={create_note}>
         <label htmlFor="title"> Title </label>
