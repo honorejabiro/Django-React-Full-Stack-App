@@ -18,6 +18,6 @@ class UserSerializers(serializers.ModelSerializer):
     
 class NotesSerializer(serializers.ModelSerializer):
     class Meta:
-        moedel = Notes
-        fields = "__all__"
+        model = Notes
+        fields = ['id', 'title', 'body', 'category', 'author', 'created_at']
         extra_kwargs = {"author":{"read_only": True}}

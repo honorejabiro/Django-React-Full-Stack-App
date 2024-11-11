@@ -19,11 +19,11 @@ def create_user(request):
 @permission_classes([IsAuthenticated])
 def create_note(request):
     if request.method == 'POST':
-        author = request.author
+        author = request.user
         serializers = NotesSerializer(data = request.data)
         if serializers.is_valid():
             serializers.save(author=author)
-            return Response(serializers, status=status.HTTP_200_OK)
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
     

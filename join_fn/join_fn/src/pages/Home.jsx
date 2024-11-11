@@ -3,12 +3,15 @@ import { useState, useEffect } from "react";
 import api from "../api.js";
 import Notes from "../components/Notes.jsx"
 import "../styles/Home.css"
+import LoadingIndicator from "../components/LoadingIndicator.jsx";
 
 const Home = () => {
   const [notes, setNotes] = useState([]);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("")
+  const [isLoader, setIsLoader] = useState(true)
   const fetchnotes = () => {
+
     api
       .get("/api/notes/")
       .then((response) => {
